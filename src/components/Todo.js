@@ -4,7 +4,7 @@ const Todo = ({todos, completeTodo, removeTodo}) => {
     
     // useEffect(() =>{
     //     window.localStorage.setItem('todos', JSON.stringify(todos));
-    // });
+    // }, [todos, removeTodo]);
 
     return todos.map((todo) => 
         <div className="ui inverted segment" key={todo.id}>

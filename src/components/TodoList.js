@@ -6,17 +6,20 @@ const TodoList = () => {
     const [todos, setTodos] = useState([]);
 
     const addTodo = (todo) => {
-        console.log(todo)
         const todoNew = [todo,...todos];
         console.log(todo,...todos);
+        window.localStorage.setItem('todos', JSON.stringify(todoNew));
         setTodos(todoNew);
-        console.log(todos)
     }
+    
 
     useEffect(() =>{
-        window.localStorage.setItem('todos', JSON.stringify(todos));
-    }, [todos]);
-
+        if(localStorage && !localStorage.getItem('todos')){
+            return;
+        }
+        const data = JSON.parse(localStorage.getItem('todos'));
+        setTodos(data);
+    }, []);
 
     const completeTodo = id => {
         let updatedTodos = todos.map(todo => {
@@ -31,6 +34,7 @@ const TodoList = () => {
     const removeTodo = (id) => {
         const removeElement = [...todos].filter(todo => todo.id !== id);
         setTodos(removeElement);
+        window.localStorage.setItem('todos', JSON.stringify(removeElement));
     };
 
     return (
