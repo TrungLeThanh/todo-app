@@ -6,14 +6,14 @@ import EditTodo from './EditTodo';
 
 const TodoList = () => { 
     const [todos, setTodos] = useState([]);
-    const [edit, setEdit] = useState('');
-    const [ID, setID] = useState('');
+    // const [edit, setEdit] = useState('');
 
     const addTodo = (todo) => {
         const todoNew = [todo,...todos];
         window.localStorage.setItem('todos', JSON.stringify(todoNew));
         setTodos(todoNew);
     }
+
 
     useEffect(() =>{
         if(localStorage && !localStorage.getItem('todos')){
@@ -39,39 +39,38 @@ const TodoList = () => {
         window.localStorage.setItem('todos', JSON.stringify(removeElement));
     };
 
-    
-    const updateTodo = (id) => {
-        setID(id);
-        let pos;
-        for(let i=0; i<todos.length; i++){
-            if(todos[i].id === id){
-                pos = i;
+    const updateTodo = (editId, editValue) => {
+        // console.log(todos);
+        todos.map(todo =>{
+            if(todo.id === editId){
+                return console.log('oke');
             }
-        }
-        setEdit(todos[pos].text);
+            return 'noooo';
+        })
+
     };
     
-    const onSubmited = (event) => {
-        event.preventDefault();
-        // const newValue = todos.map((item) => item.id === ID )
-        setTodos(prev => prev.map(item => (item.id === ID ? edit : item)));
-        console.log(ID);
-        console.log(edit);
-    }
+    // const onSubmited = (event) => {
+    //     event.preventDefault();
+    //     // setTodos(todos);
+    //     // console.log(todos[0].text);
+    //     const 
+    //     setTodos(todos[0].text);
+    // }
 
-    const showEdit = () => {
-        return (
-            <form className="ui form" onSubmit={onSubmited} key={ID}>
-                <div className="field"> 
-                    <input 
-                        type="text" 
-                        value={edit} 
-                        onChange={e => setEdit(e.target.value)}
-                    />
-                </div>
-            </form>
-        );
-    }
+    // const showEdit = () => {
+    //     return (
+    //         <form className="ui form" onSubmit={onSubmited} key="edit">
+    //             <div className="field"> 
+    //                 <input 
+    //                     type="text" 
+    //                     value={edit} 
+    //                     onChange={e => setEdit(e.target.value)}
+    //                 />
+    //             </div>
+    //         </form>
+    //     );
+    // }
 
 
     const show = () => {
@@ -92,7 +91,7 @@ const TodoList = () => {
         <div>
             <TodoForm onSubmit={addTodo} /> 
             {show()}
-            {showEdit()}
+            {/* {showEdit()} */}
         </div>
     );
 };
