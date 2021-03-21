@@ -15,13 +15,7 @@ const TodoList = () => {
     }
 
 
-    useEffect(() =>{
-        if(localStorage && !localStorage.getItem('todos')){
-            return ;
-        }
-        const data = JSON.parse(localStorage.getItem('todos'));
-        setTodos(data);
-    }, []);
+    
 
     const completeTodo = id => {
         let updatedTodos = todos.map(todo => {
@@ -40,15 +34,23 @@ const TodoList = () => {
     };
 
     const updateTodo = (editId, editValue) => {
-        // console.log(todos);
-        todos.map(todo =>{
-            if(todo.id === editId){
-                return console.log('oke');
-            }
-            return 'noooo';
-        })
-
+        console.log(editValue);
+        console.log(editId);
+        // setTodos(todos => todos.map(item => (item.id === editId ? editValue : item)));
+        // console.log(todos[2]);
+        setTodos(todos => todos.map(item => (item.id === editId ? item.text=editValue : item)));
+        window.localStorage.setItem('todos', JSON.stringify(todos));
+        console.log(todos);
     };
+
+
+    useEffect(() =>{
+        if(localStorage && !localStorage.getItem('todos')){
+            return ;
+        }
+        const data = JSON.parse(localStorage.getItem('todos'));
+        setTodos(data);
+    }, []);
     
     // const onSubmited = (event) => {
     //     event.preventDefault();

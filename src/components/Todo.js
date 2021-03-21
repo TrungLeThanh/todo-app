@@ -4,11 +4,10 @@ const Todo = ({todos, completeTodo, removeTodo, updateTodo}) => {
 
     const [edit, setEdit] = useState({id: null, value: ''});
 
-    const onSubmitEdit = (event, value) => {
-        event.preventDefault();
+    const onSubmitEdit = (event) => {
+        updateTodo(edit.id, edit.value);
+        // setEdit({id: null, value: ''});
         // console.log(edit.id);
-        updateTodo(edit.id, value);
-        setEdit({id: null, value: ''});
     };
 
     const showEdit = () => {
@@ -18,18 +17,17 @@ const Todo = ({todos, completeTodo, removeTodo, updateTodo}) => {
                     <input 
                         type="text" 
                         value={edit.value} 
-                        onChange={e => setEdit({value: e.target.value})}
+                        onChange={e => setEdit({id: edit.id, value: e.target.value})}
                     />
                     </div>
                 </form>
             );
     };
-    // console.log(edit);
 
     return (
         <div>
         {todos.map((todo) => 
-            <div className="ui inverted segment" key={todo.id}>
+            <div className="ui inverted segment" key={todo.id+1}>
                 <p>{todo.text}</p>
                 <i className="far fa-trash-alt" style={{marginRight: '15px'}} onClick={() => removeTodo(todo.id)}/>
                 <i className="far fa-edit" onClick={() => setEdit({ id: todo.id, value: todo.text })} /> 
