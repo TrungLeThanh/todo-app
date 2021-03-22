@@ -21,12 +21,8 @@ const TodoList = () => {
     };
 
     const updateTodo = (editId, editValue) => {
-        // console.log(editValue);
-        // console.log(editId);
-        // console.log(todos[2]);
         setTodos(todos => todos.map(item => (item.id === editId ? item.text=editValue : item)));
         window.localStorage.setItem('todos', JSON.stringify(todos));
-        // console.log(todos);
     };
 
     useEffect(() =>{
