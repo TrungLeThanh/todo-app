@@ -2,30 +2,15 @@ import React, {useState, useEffect} from 'react';
 import TodoForm from './TodoForm';
 import Todo from './Todo';
 import ListEmpty from './ListEmpty';
-import EditTodo from './EditTodo';
 
 const TodoList = () => { 
     const [todos, setTodos] = useState([]);
-    // const [edit, setEdit] = useState('');
 
     const addTodo = (todo) => {
         const todoNew = [todo,...todos];
         window.localStorage.setItem('todos', JSON.stringify(todoNew));
         setTodos(todoNew);
     }
-
-
-    
-
-    const completeTodo = id => {
-        let updatedTodos = todos.map(todo => {
-            if (todo.id === id) {
-                todo.isComplete = !todo.isComplete;
-            }
-            return todo;
-        });
-        setTodos(updatedTodos);
-    };
 
     const removeTodo = (id) => {
         const removeElement = [...todos].filter(todo => todo.id !== id);
@@ -36,8 +21,7 @@ const TodoList = () => {
     const updateTodo = (editId, editValue) => {
         console.log(editValue);
         console.log(editId);
-        // setTodos(todos => todos.map(item => (item.id === editId ? editValue : item)));
-        // console.log(todos[2]);
+        console.log(todos[2]);
         setTodos(todos => todos.map(item => (item.id === editId ? item.text=editValue : item)));
         window.localStorage.setItem('todos', JSON.stringify(todos));
         console.log(todos);
@@ -52,35 +36,11 @@ const TodoList = () => {
         setTodos(data);
     }, []);
     
-    // const onSubmited = (event) => {
-    //     event.preventDefault();
-    //     // setTodos(todos);
-    //     // console.log(todos[0].text);
-    //     const 
-    //     setTodos(todos[0].text);
-    // }
-
-    // const showEdit = () => {
-    //     return (
-    //         <form className="ui form" onSubmit={onSubmited} key="edit">
-    //             <div className="field"> 
-    //                 <input 
-    //                     type="text" 
-    //                     value={edit} 
-    //                     onChange={e => setEdit(e.target.value)}
-    //                 />
-    //             </div>
-    //         </form>
-    //     );
-    // }
-
-
     const show = () => {
         if(todos.length){
             return (
                 <Todo 
                     todos={todos} 
-                    completeTodo={completeTodo}
                     removeTodo={removeTodo}
                     updateTodo={updateTodo}
                 />
@@ -89,11 +49,11 @@ const TodoList = () => {
         return <ListEmpty />;
     };
 
+    
     return (
         <div>
             <TodoForm onSubmit={addTodo} /> 
             {show()}
-            {/* {showEdit()} */}
         </div>
     );
 };

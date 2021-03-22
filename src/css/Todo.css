@@ -1,0 +1,9 @@
+.list{
+    display: flex;
+}
+
+.far{
+    position: absolute;
+    top: 20px;
+    right: 40px;
+}

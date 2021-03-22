@@ -17,7 +17,7 @@ const TodoForm = ({onSubmit}) => {
 
 
     return (    
-        <form className="ui form" onSubmit={onFormSubmit}>
+        <form className="ui form" onSubmit={onFormSubmit} style={{marginBottom: '20px'}}>
             <div className="field">
                 <input 
                     type="text" 
