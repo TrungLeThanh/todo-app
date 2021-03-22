@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
+import '../css/Todo.css';
 
 const TodoForm = ({onSubmit}) => {
 
@@ -17,14 +18,16 @@ const TodoForm = ({onSubmit}) => {
 
 
     return (    
-        <form className="ui form" onSubmit={onFormSubmit} style={{marginBottom: '20px'}}>
-            <div className="field">
+        <form className="ui form success" onSubmit={onFormSubmit} style={{marginBottom: '20px'}}>
+            <div className="field form-edit">
                 <input 
                     type="text" 
                     value={input}
                     onChange={ e => setInput(e.target.value)}
                     placeholder="Add to do"
+                    style={{width: '400px'}}
                 />
+                <button className="ui secondary button" type="submit" onSubmit={onFormSubmit} style={{marginLeft: '10px'}}>Add</button>
             </div>
         </form>
     );

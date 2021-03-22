@@ -1,9 +1,18 @@
 .list{
     display: flex;
+    height: 25px;
 }
 
 .far{
     position: absolute;
     top: 20px;
     right: 40px;
+    cursor: pointer;
+}
+
+.form-edit{
+    display: flex;
+}
+.segment{
+    overflow: auto;
 }

@@ -36,32 +36,36 @@ const Todo = ({todos, removeTodo, updateTodo}) => {
                             type="text" 
                             value={edit.value} 
                             onChange={e => setEdit({id: edit.id, value: e.target.value})}
+                            required
                         />
                     </div>
                     <button className="ui green button" type="submit" onSubmit={onSubmitEdit}>Submit</button>
                     <button className="ui red button" onClick={() => setModalIsOpen(false)}>Cancel</button>
                 </form>
-                
             </Modal>
         );
     };
 
+
     return (
         <div>
-        {todos.map((todo) => 
-            <div className="ui black segment" key={todo.id+1}>
-                <div className="list">
-                    <p>{todo.text}</p>
-                    <i className="far fa-trash-alt" style={{marginRight: '25px'}} onClick={() => removeTodo(todo.id)}/>
-                    <i className="far fa-edit" onClick={() => {
-                        setEdit({ id: todo.id, value: todo.text })
-                        setModalIsOpen(true)
-                        }
-                    }/> 
+            {todos.map((todo) => 
+                <div className="ui black raised segment" key={todo.id+1}>
+                    <div className="list">
+                        <p>{todo.text}</p>
+                        <i className="far fa-trash-alt" style={{marginRight: '50px', color: '#CA4832'}} onClick={() => removeTodo(todo.id)}/>
+                        <i className="far fa-edit" onClick={() => {
+                            setEdit({ id: todo.id, value: todo.text })
+                            setModalIsOpen(true)
+                            }}
+                            style={{marginRight: '22px'}}
+                        /> 
+                        <input className="far" type="checkbox" />
+                    </div>
                 </div>
-            </div>
-        )}
-        {showEdit()}</div>
+            )}
+            {showEdit()}
+        </div>
     );
     
 };
