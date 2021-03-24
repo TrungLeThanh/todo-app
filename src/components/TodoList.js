@@ -7,6 +7,7 @@ import '../css/TodoList.css';
 const TodoList = () => { 
     const [todos, setTodos] = useState([]);
     let count = 0 ;
+    const [time, setTime] = useState('');
 
     const addTodo = (todo) => {
         const todoNew = [todo,...todos];
@@ -65,6 +66,12 @@ const TodoList = () => {
         return <ListEmpty />;
     };
 
+    useEffect(() =>{
+        setInterval( () => {
+            setTime(new Date().toLocaleTimeString())
+        },1000)
+    }, [])
+
     
     return (
         <div>
@@ -82,8 +89,14 @@ const TodoList = () => {
             <div style={{margin: '25px 0 25px 0'}}>
                 {show()}
             </div>
-            <div>
+            <div style={{marginBottom: '20px'}}>
                 {showCount()}
+                <span style={{float: 'right'}}>
+                    <div class="ui label">
+                        <i class="clock icon"></i>
+                        {time}
+                    </div>
+                </span> 
             </div>
         </div>
     );

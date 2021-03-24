@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Modal from 'react-modal';
 import '../css/Todo.css';
 
@@ -50,10 +50,11 @@ const Todo = ({todos, removeTodo, updateTodo, completeTodo}) => {
         completeTodo(id);
     };
 
+
     return (
         <div>
             {todos.map((todo) => 
-                <div className="ui black raised segment" key={todo.id+1}>
+                <div className="ui black raised segment" key={todo.id+1} style={{opacity: `${todo.status ? '0.3' : '1'}`}}>
                     <div className="list">
                         <p style={{textDecoration: `${todo.status ? 'line-through' : ''}`}}>{todo.text}</p>
                         <i className="far fa-trash-alt" style={{marginRight: '50px', color: '#CA4832'}} onClick={() => removeTodo(todo.id)}/>
@@ -63,7 +64,7 @@ const Todo = ({todos, removeTodo, updateTodo, completeTodo}) => {
                             }}
                             style={{marginRight: '22px'}}
                         /> 
-                        <input className="far" type="checkbox" checked={`${todo.status ? 'checked' : ''}`} onChange={()=>{}} onClick={() => statusTodo(todo.id)} />
+                        <input className="far" type="checkbox" checked={`${todo.status ? 'checked' : ''}`} onChange={() => statusTodo(todo.id)} />
                     </div>
                 </div>
             )}
