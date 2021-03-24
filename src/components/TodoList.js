@@ -25,14 +25,6 @@ const TodoList = () => {
         window.localStorage.setItem('todos', JSON.stringify(todos));
     };
 
-    useEffect(() =>{
-        if(localStorage && !localStorage.getItem('todos')){
-            return ;
-        }
-        const data = JSON.parse(localStorage.getItem('todos'));
-        setTodos(data);
-    }, []);
-
     const showCount = () => {
         for(let i=0;i<todos.length;i++){
             if(todos[i].text && todos[i].status===false){
@@ -43,14 +35,20 @@ const TodoList = () => {
     }
 
     const completeTodo = (id) =>{
-        for(let i=0;i<todos.length;i++){
-            if(todos[i].id === id){
-                setTodos(todos[i].status=true);
-            }
-        }
+        todos.forEach(item => item.id === id ? item.status=true : item);
         window.localStorage.setItem('todos', JSON.stringify(todos));
+        const data = JSON.parse(localStorage.getItem('todos'));
+        setTodos(data);
     }
     
+    useEffect(() =>{
+        if(localStorage && !localStorage.getItem('todos')){
+            return ;
+        }
+        const data = JSON.parse(localStorage.getItem('todos'));
+        setTodos(data);
+    }, []);
+
     const show = () => {
         if(todos.length){
             return (

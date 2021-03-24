@@ -48,7 +48,7 @@ const Todo = ({todos, removeTodo, updateTodo, completeTodo}) => {
 
     const statusTodo = (id) =>{
         completeTodo(id);
-    }
+    };
 
     return (
         <div>
