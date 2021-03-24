@@ -35,7 +35,7 @@ const TodoList = () => {
     }
 
     const completeTodo = (id) =>{
-        todos.forEach(item => item.id === id ? item.status=true : item);
+        todos.forEach(item => item.id === id ? item.status=!item.status : item);
         window.localStorage.setItem('todos', JSON.stringify(todos));
         const data = JSON.parse(localStorage.getItem('todos'));
         setTodos(data);
