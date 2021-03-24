@@ -10,7 +10,8 @@ const TodoForm = ({onSubmit}) => {
 
         onSubmit({
             text: input,
-            id: Math.floor(Math.random() *1000)
+            id: Math.floor(Math.random() *1000),
+            status: false
         });
 
         setInput('');
@@ -26,6 +27,7 @@ const TodoForm = ({onSubmit}) => {
                     onChange={ e => setInput(e.target.value)}
                     placeholder="Add to do"
                     style={{width: '400px'}}
+                    required
                 />
                 <button className="ui secondary button" type="submit" onSubmit={onFormSubmit} style={{marginLeft: '10px'}}>Add</button>
             </div>

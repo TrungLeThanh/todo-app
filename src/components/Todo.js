@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Modal from 'react-modal';
 import '../css/Todo.css';
 
-const Todo = ({todos, removeTodo, updateTodo}) => {
+const Todo = ({todos, removeTodo, updateTodo, completeTodo}) => {
     const [edit, setEdit] = useState({id: null, value: ''});
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -46,13 +46,16 @@ const Todo = ({todos, removeTodo, updateTodo}) => {
         );
     };
 
+    const statusTodo = (id) =>{
+        completeTodo(id);
+    }
 
     return (
         <div>
             {todos.map((todo) => 
                 <div className="ui black raised segment" key={todo.id+1}>
                     <div className="list">
-                        <p>{todo.text}</p>
+                        <p style={{textDecoration: `${todo.status ? 'line-through' : ''}`}}>{todo.text}</p>
                         <i className="far fa-trash-alt" style={{marginRight: '50px', color: '#CA4832'}} onClick={() => removeTodo(todo.id)}/>
                         <i className="far fa-edit" onClick={() => {
                             setEdit({ id: todo.id, value: todo.text })
@@ -60,7 +63,7 @@ const Todo = ({todos, removeTodo, updateTodo}) => {
                             }}
                             style={{marginRight: '22px'}}
                         /> 
-                        <input className="far" type="checkbox" />
+                        <input className="far" type="checkbox" checked={`${todo.status ? 'checked' : ''}`} onChange={()=>{}} onClick={() => statusTodo(todo.id)} />
                     </div>
                 </div>
             )}

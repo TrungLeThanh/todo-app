@@ -34,10 +34,21 @@ const TodoList = () => {
     }, []);
 
     const showCount = () => {
-        let i =0;
-        todos.map(item => item.text ? i++ : 0);
-        count = i;
+        for(let i=0;i<todos.length;i++){
+            if(todos[i].text && todos[i].status===false){
+                count++;
+            }
+        }
         return <div className="ui red tag label" >{count} things to do !</div>
+    }
+
+    const completeTodo = (id) =>{
+        for(let i=0;i<todos.length;i++){
+            if(todos[i].id === id){
+                setTodos(todos[i].status=true);
+            }
+        }
+        window.localStorage.setItem('todos', JSON.stringify(todos));
     }
     
     const show = () => {
@@ -48,6 +59,7 @@ const TodoList = () => {
                         todos={todos} 
                         removeTodo={removeTodo}
                         updateTodo={updateTodo}
+                        completeTodo={completeTodo}
                     />
                 </>
             );
