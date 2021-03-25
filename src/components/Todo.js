@@ -7,6 +7,7 @@ const Todo = ({todos, removeTodo, updateTodo, completeTodo}) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const onSubmitEdit = () => {
+        console.log(edit);
         updateTodo(edit.id, edit.value);
     };
 

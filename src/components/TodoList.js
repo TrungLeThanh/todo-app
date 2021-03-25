@@ -92,8 +92,8 @@ const TodoList = () => {
             <div style={{marginBottom: '20px'}}>
                 {showCount()}
                 <span style={{float: 'right'}}>
-                    <div class="ui label">
-                        <i class="clock icon"></i>
+                    <div className="ui label">
+                        <i className="clock icon"></i>
                         {time}
                     </div>
                 </span> 
