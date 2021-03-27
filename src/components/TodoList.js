@@ -22,9 +22,11 @@ const TodoList = () => {
     };
 
     const updateTodo = (editId, editValue) => {
-        setTodos(todos => todos.map(item => (item.id === editId ? item.text=editValue : item)));
+        const data = todos.map((item) => item.id === editId ? item.text= editValue : item);
+        setTodos(data);
         window.localStorage.setItem('todos', JSON.stringify(todos));
     };
+
 
     const showCount = () => {
         for(let i=0;i<todos.length;i++){

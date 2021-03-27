@@ -6,8 +6,8 @@ const Todo = ({todos, removeTodo, updateTodo, completeTodo}) => {
     const [edit, setEdit] = useState({id: null, value: ''});
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    const onSubmitEdit = () => {
-        console.log(edit);
+    const onSubmitEdit = (event) => {
+        // console.log(edit);
         updateTodo(edit.id, edit.value);
     };
 
@@ -40,7 +40,7 @@ const Todo = ({todos, removeTodo, updateTodo, completeTodo}) => {
                             required
                         />
                     </div>
-                    <button className="ui green button" type="submit" onSubmit={onSubmitEdit}>Submit</button>
+                    <button className="ui green button" type="submit" onChange={onSubmitEdit}>Submit</button>
                     <button className="ui red button" onClick={() => setModalIsOpen(false)}>Cancel</button>
                 </form>
             </Modal>
