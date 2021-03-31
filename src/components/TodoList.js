@@ -3,11 +3,15 @@ import TodoForm from './TodoForm';
 import Todo from './Todo';
 import ListEmpty from './ListEmpty';
 import '../css/TodoList.css';
+import CompletedTodo from './CompletedTodo';
+import ListTodo from './ListTodo';
 
 const TodoList = () => { 
     const [todos, setTodos] = useState([]);
     let count = 0 ;
     const [time, setTime] = useState('');
+    const [active, setActive] = useState(1);
+    const [activeButton, setActiveButton] = useState(1);
 
     const addTodo = (todo) => {
         const todoNew = [todo,...todos];
@@ -53,14 +57,20 @@ const TodoList = () => {
     }, []);
 
     const show = () => {
-        if(todos.length){
+        if(active===2){
+            return <CompletedTodo todos={todos} />;
+        }
+        else if(active===3){
+            return <ListTodo todos={todos} />
+        }
+        else if(todos.length){
             return (
                 <>
                     <Todo 
                         todos={todos} 
                         removeTodo={removeTodo}
                         updateTodo={updateTodo}
-                        completeTodo={completeTodo}
+                        completeTodo={completeTodo}  
                     />
                 </>
             );
@@ -73,6 +83,20 @@ const TodoList = () => {
             setTime(new Date().toLocaleTimeString())
         },1000)
     }, [])
+    
+    const showAll = ()=>{
+        setActive(1);
+        setActiveButton(1);
+    }
+    const showCompleted = ()=>{
+        setActive(2);
+        setActiveButton(2);
+    } 
+    
+    const showList = ()=>{
+        setActive(3);
+        setActiveButton(3);
+    }
 
     
     return (
@@ -94,10 +118,14 @@ const TodoList = () => {
             <div style={{marginBottom: '20px'}}>
                 {showCount()}
                 <span style={{float: 'right'}}>
+                    <button className={`ui ${activeButton === 1 ? 'red' : ''} button`} onClick={showAll}>All</button>
+                    <button className={`ui ${activeButton === 2 ? 'red' : ''} button`} onClick={showCompleted}>Completed</button>
+                    <button className={`ui ${activeButton === 3 ? 'red' : ''} button`} onClick={showList}>List Todo</button>
                     <div className="ui label">
                         <i className="clock icon"></i>
                         {time}
                     </div>
+                    
                 </span> 
             </div>
         </div>
