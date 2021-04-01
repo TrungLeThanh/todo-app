@@ -5,3 +5,11 @@
         flex-direction: column;
     }
 }
+
+@media (max-width:861px){
+    .task{
+        display: flex;
+        margin-top: 10px;
+    }
+}
+

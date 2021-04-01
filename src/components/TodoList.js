@@ -58,10 +58,18 @@ const TodoList = () => {
 
     const show = () => {
         if(active===2){
-            return <CompletedTodo todos={todos} />;
+            return <CompletedTodo 
+                        todos={todos} 
+                        removeTodo={removeTodo}
+                    />;
         }
         else if(active===3){
-            return <ListTodo todos={todos} />
+            return <ListTodo 
+                        todos={todos}
+                        removeTodo={removeTodo}
+                        updateTodo={updateTodo}
+                        completeTodo={completeTodo}   
+                    />
         }
         else if(todos.length){
             return (
@@ -117,7 +125,7 @@ const TodoList = () => {
             </div>
             <div style={{marginBottom: '20px'}}>
                 {showCount()}
-                <span style={{float: 'right'}}>
+                <span style={{float: 'right'}} className="task">
                     <button className={`ui ${activeButton === 1 ? 'red' : ''} button`} onClick={showAll}>All</button>
                     <button className={`ui ${activeButton === 2 ? 'red' : ''} button`} onClick={showCompleted}>Completed</button>
                     <button className={`ui ${activeButton === 3 ? 'red' : ''} button`} onClick={showList}>List Todo</button>
@@ -125,7 +133,6 @@ const TodoList = () => {
                         <i className="clock icon"></i>
                         {time}
                     </div>
-                    
                 </span> 
             </div>
         </div>
